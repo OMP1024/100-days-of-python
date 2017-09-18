@@ -8,6 +8,7 @@ from .models import Question,Choice
 # Create your views here.
 
 
+
 class IndexView(generic.ListView):
     # 指定模板
     template_name = 'polls/index.html'
@@ -27,19 +28,20 @@ class DetailView(generic.DeleteView):
 class ResultsView(generic.DeleteView):
     model = Question
     template_name = 'polls/results.html'
-#
-# def index(request):
-#     # return HttpResponse("hello,world. You're at the polls index.")
-#
-#     # latest_question_list = Question.objects.order_by('-pub_date')[:5]
-#     # template = loader.get_template('polls/index.html')
-#     # context = RequestContext(request,{'latest_question_list': latest_question_list})
-#     # return HttpResponse(template.render)
-#
-#     latest_question_list = Question.objects.order_by('-pub_date')[:5]
-#     context = {'latest_question_list': latest_question_list}
-#     return render(request,'polls/index.html',context)
-#
+
+def index(request):
+    # return HttpResponse("hello,world. You're at the polls index.")
+
+    # latest_question_list = Question.objects.order_by('-pub_date')[:5]
+    # template = loader.get_template('polls/index.html')
+    # context = RequestContext(request,{'latest_question_list': latest_question_list})
+    # return HttpResponse(template.render)
+
+    latest_question_list = Question.objects.order_by('-pub_date')[:5]
+    context = {'latest_question_list': latest_question_list}
+    # return render(request,'polls/index.html',context)
+    # res = {"a":"aaaa","b":"bbbb"}
+    return HttpResponse(latest_question_list)
 #
 # def detail(request,question_id):
 #     # return HttpResponse("you're looking at question %s." % question_id)
