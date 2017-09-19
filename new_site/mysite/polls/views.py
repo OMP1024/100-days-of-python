@@ -37,31 +37,30 @@ def index(request):
     # context = RequestContext(request,{'latest_question_list': latest_question_list})
     # return HttpResponse(template.render)
 
-    int("abc")
 
     latest_question_list = Question.objects.order_by('-pub_date')[:5]
     context = {'latest_question_list': latest_question_list}
     # return render(request,'polls/index.html',context)
     # res = {"a":"aaaa","b":"bbbb"}
     return HttpResponse(latest_question_list)
-#
-# def detail(request,question_id):
-#     # return HttpResponse("you're looking at question %s." % question_id)
-#
-#     # try:
-#     #     question = Question.objects.get(pk = question_id)
-#     # except Question.DoesNotExist:
-#     #     raise Http404('Question does not exist')
-#     # return render(request,'polls/detail.html',{'question':question})
-#
-#     question = get_object_or_404(Question,pk = question_id)
-#     return render(request,'polls/detail.html',{'question':question})
-#
-#
-# def result(request,question_id):
-#     # return HttpResponse("you're looking at result of the question %s." % question_id)
-#     question = get_object_or_404(Question,pk = question_id)
-#     return render(request,'polls/results.html',{'question':question})
+
+def detail(request,question_id):
+    # return HttpResponse("you're looking at question %s." % question_id)
+
+    # try:
+    #     question = Question.objects.get(pk = question_id)
+    # except Question.DoesNotExist:
+    #     raise Http404('Question does not exist')
+    # return render(request,'polls/detail.html',{'question':question})
+
+    question = get_object_or_404(Question,pk = question_id)
+    return render(request,'polls/detail.html',{'question':question})
+
+
+def result(request,question_id):
+    # return HttpResponse("you're looking at result of the question %s." % question_id)
+    question = get_object_or_404(Question,pk = question_id)
+    return render(request,'polls/results.html',{'question':question})
 
 
 def vote(request,question_id):
